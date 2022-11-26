@@ -518,8 +518,10 @@ h6 {
  */
 
 a {
-  color: inherit;
-  text-decoration: inherit;
+  color: white;
+  /* text-decoration: inherit; */
+  background-color: black;
+
 }
 
 /**
